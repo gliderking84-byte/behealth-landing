@@ -1063,6 +1063,242 @@
       transform: translateY(0);
     }
 
+    /* ─── MODAL LEGALE (Privacy & Termini) ─── */
+    .legal-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(45, 74, 30, 0.55);
+      backdrop-filter: blur(6px);
+      z-index: 600;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .legal-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .legal-modal {
+      background: var(--cream);
+      border-radius: 24px 24px 0 0;
+      width: 100%;
+      max-width: 720px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(40px);
+      transition: transform 0.4s cubic-bezier(0.34, 1.3, 0.64, 1);
+      box-shadow: 0 -20px 80px rgba(45,74,30,0.25);
+    }
+
+    .legal-modal-overlay.open .legal-modal {
+      transform: translateY(0);
+    }
+
+    .legal-modal-handle {
+      width: 40px; height: 4px;
+      background: var(--green-pale);
+      border-radius: 2px;
+      margin: 14px auto 0;
+      flex-shrink: 0;
+    }
+
+    .legal-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 28px 16px;
+      border-bottom: 1px solid var(--green-mist);
+      flex-shrink: 0;
+    }
+
+    .legal-modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--green-deep);
+    }
+
+    .legal-modal-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-top: 2px;
+    }
+
+    .legal-modal-close {
+      width: 32px; height: 32px;
+      border: none;
+      background: var(--green-mist);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 15px;
+      color: var(--text-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .legal-modal-close:hover { background: var(--green-pale); }
+
+    .legal-modal-body {
+      overflow-y: auto;
+      padding: 24px 28px 40px;
+      flex: 1;
+    }
+
+    /* Beta banner */
+    .legal-beta-banner {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 12px;
+      padding: 12px 16px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #92400e;
+      line-height: 1.5;
+    }
+
+    .legal-beta-icon { font-size: 16px; flex-shrink: 0; }
+
+    /* GDPR notice */
+    .legal-gdpr-notice {
+      background: var(--green-mist);
+      border: 1px solid var(--green-pale);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* Section card */
+    .legal-section-card {
+      background: white;
+      border: 1px solid var(--green-mist);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .legal-section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+
+    .legal-section-header:hover { background: var(--green-mist); }
+
+    .legal-section-icon { font-size: 16px; }
+
+    .legal-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green-deep);
+      flex: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .legal-section-chevron {
+      font-size: 12px;
+      color: var(--text-soft);
+      transition: transform 0.25s;
+    }
+
+    .legal-section-card.open .legal-section-chevron {
+      transform: rotate(180deg);
+    }
+
+    .legal-section-body {
+      display: none;
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--green-mist);
+    }
+
+    .legal-section-card.open .legal-section-body { display: block; }
+
+    .legal-section-body p {
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.7;
+      margin-top: 10px;
+    }
+
+    /* Accordion for privacy sub-sections */
+    .legal-accordion {
+      border: 1px solid var(--green-mist);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .legal-accordion-item {
+      border-bottom: 1px solid var(--green-mist);
+    }
+
+    .legal-accordion-item:last-child { border-bottom: none; }
+
+    .legal-accordion-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 14px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-mid);
+      text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.15s;
+    }
+
+    .legal-accordion-btn:hover { background: var(--green-mist); }
+
+    .legal-accordion-chevron { font-size: 11px; color: var(--text-soft); transition: transform 0.2s; }
+    .legal-accordion-item.open .legal-accordion-chevron { transform: rotate(180deg); }
+
+    .legal-accordion-content {
+      display: none;
+      padding: 0 14px 12px;
+      font-size: 12px;
+      color: var(--text-soft);
+      line-height: 1.65;
+    }
+
+    .legal-accordion-item.open .legal-accordion-content { display: block; }
+
+    /* Footer note */
+    .legal-footer-note {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-top: 24px;
+      line-height: 1.6;
+    }
+
+    .legal-footer-note a {
+      color: var(--green-brand);
+      text-decoration: none;
+    }
+
     /* ─── MODAL FORM ─── */
     .modal-overlay {
       position: fixed;
@@ -1496,7 +1732,7 @@
         <div class="feature-card reveal">
           <span class="feature-icon">📋</span>
           <div class="feature-title">Piano Giornaliero Personalizzato</div>
-          <p class="feature-desc">Ogni mattina, 3 chiamate AI sequenziali generano un piano completo: analisi clinica, 5 missioni personalizzate e piano pasti calibrato sui tuoi biomarcatori. In meno di 15 secondi.</p>
+          <p class="feature-desc">Ogni mattina, l'AI genera un piano completo: analisi clinica, 5 missioni personalizzate e piano pasti calibrato sui tuoi biomarcatori reali. In meno di 15 secondi.</p>
           <span class="feature-tag">Generato ogni giorno</span>
         </div>
 
@@ -1557,69 +1793,165 @@
     </div>
   </section>
 
-  <!-- BUSINESS MODEL / PREZZI -->
-  <section class="business" id="prezzi">
+  <!-- SEZIONE INVESTITORI -->
+  <section id="investitori" style="background: var(--white); border-top: 1px solid var(--green-pale);">
     <div class="section-inner">
-      <div class="section-tag reveal">Modello di Business</div>
-      <h2 class="section-title reveal">Per ogni tipo di utente.<br />Per ogni scala.</h2>
-      <p class="section-desc reveal">Modello B2B2C a tre livelli — dal singolo utente alle grandi cliniche e assicurazioni sanitarie.</p>
 
-      <div class="plans">
-        <!-- B2C -->
-        <div class="plan-card reveal">
-          <div class="plan-target">B2C · Consumer</div>
-          <div class="plan-name">Personal</div>
-          <div class="plan-price">€9,99</div>
-          <div class="plan-period">/ mese · dopo 30 giorni gratis</div>
-          <ul class="plan-features">
-            <li>Analisi AI illimitate degli esami</li>
-            <li>Piano giornaliero personalizzato</li>
-            <li>Coach AI (ematologo + nutrizionista)</li>
-            <li>Tracker equilibrio & umore</li>
-            <li>Gamificazione completa (XP, badge)</li>
-            <li>Carrello spesa intelligente</li>
-            <li>Export PDF analisi</li>
-          </ul>
-          <button onclick="openModal()" class="plan-cta" style="border:none; cursor:pointer; font-family:inherit; width:100%;">Inizia gratis →</button>
+      <!-- Eyebrow -->
+      <div class="section-tag reveal" style="
+        display:inline-flex; align-items:center; gap:6px;
+        background: var(--green-mist); border:1px solid var(--green-pale);
+        border-radius:20px; padding:4px 14px; font-size:11px; font-weight:500;
+        letter-spacing:.1em; text-transform:uppercase; color:var(--green-brand);
+        margin-bottom:20px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--green-brand);animation:pulse 2s infinite;display:inline-block;"></span>
+        Opportunità di investimento
+      </div>
+
+      <h2 class="section-title reveal">
+        Costruiamo insieme<br />
+        <em style="font-style:italic; color:var(--green-brand);">l'infrastruttura AI</em><br />
+        per la salute preventiva.
+      </h2>
+
+      <p class="section-desc reveal" style="margin-bottom:48px;">
+        BeHealth sta aprendo un round di raccolta su piattaforma equity crowdfunding
+        regolamentata Consob. Se credi nella visione, lascia i tuoi contatti:
+        riceverai il materiale riservato prima del lancio pubblico.
+      </p>
+
+      <!-- Stat bar -->
+      <div class="reveal" style="
+        display:grid; grid-template-columns:repeat(3,1fr);
+        gap:1px; background:var(--green-pale);
+        border:1px solid var(--green-pale); border-radius:16px;
+        overflow:hidden; margin-bottom:48px;">
+        <div style="background:var(--cream); padding:24px 28px;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--green-deep);line-height:1;margin-bottom:4px;">
+            $660<span style="color:var(--green-brand);">B</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-soft);line-height:1.4;">Mercato globale Digital Health (2025) — CAGR 18,6%</div>
         </div>
-
-        <!-- B2B Pro — featured -->
-        <div class="plan-card featured reveal">
-          <div class="plan-badge">Più richiesto</div>
-          <div class="plan-target">B2B · Professionisti</div>
-          <div class="plan-name">Professional</div>
-          <div class="plan-price">€199</div>
-          <div class="plan-period">/ mese per medico</div>
-          <ul class="plan-features">
-            <li>Agente AI proprietario brandizzato</li>
-            <li>Protocollo clinico personalizzabile (SKILL)</li>
-            <li>Dashboard pazienti con consenso</li>
-            <li>Deployment su piattaforma BeHealth</li>
-            <li>Analytics su outcome paziente</li>
-            <li>Onboarding dedicato</li>
-            <li>Supporto prioritario</li>
-          </ul>
-          <a href="mailto:behealth.support@gmail.com" class="plan-cta">Contattaci →</a>
+        <div style="background:var(--cream); padding:24px 28px;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--green-deep);line-height:1;margin-bottom:4px;">
+            47<span style="color:var(--green-brand);">M</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-soft);line-height:1.4;">Visite specialistiche/anno in Italia con liste d'attesa oltre 60 giorni</div>
         </div>
-
-        <!-- Enterprise -->
-        <div class="plan-card reveal">
-          <div class="plan-target">B2B · Enterprise</div>
-          <div class="plan-name">Enterprise</div>
-          <div class="plan-price">Custom</div>
-          <div class="plan-period">White-label + API</div>
-          <ul class="plan-features">
-            <li>Soluzione white-label completa</li>
-            <li>API BeHealth per integrazione</li>
-            <li>Deploy su infrastruttura cliente</li>
-            <li>SLA garantito & compliance GDPR</li>
-            <li>Revenue sharing su abbonamenti</li>
-            <li>Validazione clinica e documentazione</li>
-            <li>Account manager dedicato</li>
-          </ul>
-          <a href="mailto:behealth.support@gmail.com" class="plan-cta">Richiedi demo →</a>
+        <div style="background:var(--cream); padding:24px 28px;">
+          <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--green-deep);line-height:1;margin-bottom:4px;">
+            €12<span style="color:var(--green-brand);">B</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-soft);line-height:1.4;">SAM target — app salute preventiva UE, B2C + B2B</div>
         </div>
       </div>
+
+      <!-- Due card affiancate -->
+      <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;">
+        <div style="background:var(--green-mist);border:1px solid var(--green-pale);border-radius:20px;padding:28px;">
+          <span style="font-size:24px;margin-bottom:12px;display:block;">🏗️</span>
+          <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--green-deep);margin-bottom:10px;">Cosa stiamo costruendo</div>
+          <div style="font-size:14px;line-height:1.65;color:var(--text-soft);">
+            Un'app AI-first che analizza referti ematici, genera piani salute personalizzati e connette pazienti con specialisti tramite agenti AI proprietari. Local-first oggi, cloud e marketplace medici in Fase 2.
+          </div>
+        </div>
+        <div style="background:var(--green-deep);border:1px solid var(--green-mid);border-radius:20px;padding:28px;">
+          <span style="font-size:24px;margin-bottom:12px;display:block;">💡</span>
+          <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--green-pale);margin-bottom:10px;">Il vantaggio difendibile</div>
+          <div style="font-size:14px;line-height:1.65;color:var(--green-light);">
+            Il marketplace B2B dove medici e nutrizionisti deploiano i propri protocolli clinici come agenti AI. Effetti di rete: più specialisti → migliori outcome → più utenti. Nessun competitor ha questa architettura.
+          </div>
+        </div>
+      </div>
+
+      <!-- Disclaimer legale -->
+      <div class="reveal" style="
+        background:var(--cream-warm); border:1px solid var(--brown-light);
+        border-radius:12px; padding:20px 24px; margin-bottom:40px;
+        font-size:12px; line-height:1.65; color:var(--text-soft);">
+        <strong style="color:var(--text-mid);">Nota legale.</strong>
+        Questa pagina non costituisce un'offerta pubblica di strumenti finanziari ai sensi del D.Lgs. 58/1998 (TUF) né del Regolamento UE 2020/1503.
+        La raccolta equity avverrà esclusivamente tramite portale di crowdfunding autorizzato Consob.
+        Le manifestazioni di interesse espresse attraverso il form sottostante non comportano alcun obbligo di acquisto né trasferimento di denaro.
+        Dati trattati ai sensi del GDPR Art. 6(1)(a).
+      </div>
+
+      <!-- Form CTA investitori -->
+      <div class="reveal" style="
+        background:var(--green-deep); border-radius:24px;
+        padding:40px 44px;" id="inv-form-wrap">
+
+        <div id="inv-form-inner">
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;margin-bottom:8px;">
+            Entra nel progetto BeHealth
+          </div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:32px;line-height:1.6;">
+            Lascia i tuoi contatti. Ti inviamo il materiale riservato — Executive Summary,
+            traction beta e struttura del round — prima dell'apertura pubblica.
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <input id="inv-name" type="text" placeholder="Nome e cognome" autocomplete="name"
+              style="background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);
+                border-radius:10px;padding:13px 16px;font-size:15px;color:white;
+                font-family:'DM Sans',sans-serif;outline:none;width:100%;"
+              onfocus="this.style.borderColor='var(--green-light)'"
+              onblur="this.style.borderColor='rgba(255,255,255,0.18)'" />
+            <input id="inv-email" type="email" placeholder="Email professionale" autocomplete="email"
+              style="background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);
+                border-radius:10px;padding:13px 16px;font-size:15px;color:white;
+                font-family:'DM Sans',sans-serif;outline:none;width:100%;"
+              onfocus="this.style.borderColor='var(--green-light)'"
+              onblur="this.style.borderColor='rgba(255,255,255,0.18)'" />
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
+            <select id="inv-role"
+              style="background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);
+                border-radius:10px;padding:13px 16px;font-size:15px;color:rgba(255,255,255,0.7);
+                font-family:'DM Sans',sans-serif;outline:none;appearance:none;width:100%;cursor:pointer;">
+              <option value="" disabled selected>Ruolo / profilo</option>
+              <option value="angel">Business Angel</option>
+              <option value="vc">Venture Capital / Fondo</option>
+              <option value="corporate">Corporate / Strategico</option>
+              <option value="clinico">Clinico / Medico</option>
+              <option value="altro">Altro</option>
+            </select>
+            <select id="inv-ticket"
+              style="background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.18);
+                border-radius:10px;padding:13px 16px;font-size:15px;color:rgba(255,255,255,0.7);
+                font-family:'DM Sans',sans-serif;outline:none;appearance:none;width:100%;cursor:pointer;">
+              <option value="" disabled selected>Ticket indicativo</option>
+              <option value="sotto5k">Sotto €5.000</option>
+              <option value="5-25k">€5.000 – €25.000</option>
+              <option value="25-100k">€25.000 – €100.000</option>
+              <option value="oltre100k">Oltre €100.000</option>
+              <option value="nd">Preferisco non indicarlo</option>
+            </select>
+          </div>
+
+          <button onclick="handleInvSubmit()" class="btn-primary" style="
+            width:100%; justify-content:center; font-size:16px;
+            background:var(--green-brand); border:none; cursor:pointer; font-family:inherit;">
+            ✦ Ricevi il materiale riservato
+          </button>
+
+          <p style="font-size:11px;color:rgba(255,255,255,0.35);text-align:center;margin-top:16px;">
+            Nessun impegno. Nessun trasferimento di denaro. Solo informazioni.
+          </p>
+        </div>
+
+        <!-- Stato successo -->
+        <div id="inv-success" style="display:none; flex-direction:column; align-items:center; text-align:center; gap:16px; padding:20px 0;">
+          <div style="width:56px;height:56px;border-radius:50%;background:var(--green-mist);display:flex;align-items:center;justify-content:center;font-size:28px;">✅</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white;">Richiesta ricevuta</div>
+          <div style="font-size:14px;color:var(--green-light);max-width:320px;line-height:1.6;">
+            Ti contatteremo entro 48 ore con il materiale completo.<br>Grazie per l'interesse in BeHealth.
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </section>
 
@@ -1684,7 +2016,7 @@
           <div class="roadmap-content">
             <div class="roadmap-phase">Fase 3 · Q4 2026</div>
             <div class="roadmap-title">Marketplace Medici</div>
-            <div class="roadmap-desc">Marketplace B2B dove medici e nutrizionisti deploiano i propri agenti AI proprietari. Onboarding B2B, white-label API, validazione clinica, lancio Italia + Germania.</div>
+            <div class="roadmap-desc">Marketplace B2B dove medici e nutrizionisti deploiano i propri agenti AI proprietari. Onboarding B2B, white-label API, validazione clinica.</div>
             <div class="roadmap-timing">Q4 2026</div>
           </div>
         </div>
@@ -1725,6 +2057,186 @@
       </div>
     </div>
   </section>
+
+  <!-- MODAL TERMINI & CONDIZIONI -->
+  <div class="legal-modal-overlay" id="legalTermsOverlay">
+    <div class="legal-modal">
+      <div class="legal-modal-handle"></div>
+      <div class="legal-modal-header">
+        <div>
+          <div class="legal-modal-title">Termini & Condizioni</div>
+          <div class="legal-modal-subtitle">Versione 1.0 · Giugno 2026</div>
+        </div>
+        <button class="legal-modal-close" onclick="closeLegal('terms')">✕</button>
+      </div>
+      <div class="legal-modal-body">
+
+        <!-- Beta banner -->
+        <div class="legal-beta-banner">
+          <span class="legal-beta-icon">⚠️</span>
+          BeHealth è attualmente in fase Beta pubblica (v0.5.0-beta). Alcune funzionalità potrebbero essere incomplete o soggette a modifiche.
+        </div>
+
+        <!-- Disclaimer medico -->
+        <div class="legal-section-card" onclick="toggleLegalSection(this)">
+          <div class="legal-section-header">
+            <span class="legal-section-icon">⚕️</span>
+            <span class="legal-section-title">Disclaimer medico</span>
+            <span class="legal-section-chevron">▼</span>
+          </div>
+          <div class="legal-section-body">
+            <p>BeHealth è uno strumento di supporto personale alla salute e NON costituisce consulenza medica professionale.</p>
+            <p>Le analisi, i piani alimentari e i consigli generati dall'AI sono puramente informativi e non sostituiscono in alcun modo la diagnosi, la prescrizione o il trattamento da parte di un medico qualificato.</p>
+            <p>In caso di sintomi, patologie sospette o dubbi sulla propria salute, consultare sempre un medico o uno specialista abilitato.</p>
+            <p>Non ritardare né evitare di consultare un professionista sanitario sulla base delle informazioni fornite da BeHealth.</p>
+          </div>
+        </div>
+
+        <!-- Dati e privacy -->
+        <div class="legal-section-card" onclick="toggleLegalSection(this)">
+          <div class="legal-section-header">
+            <span class="legal-section-icon">🛡️</span>
+            <span class="legal-section-title">Dati e privacy</span>
+            <span class="legal-section-chevron">▼</span>
+          </div>
+          <div class="legal-section-body">
+            <p>Tutti i dati sanitari inseriti in BeHealth (valori ematici, referti, profilo) sono archiviati esclusivamente sul dispositivo dell'utente via localStorage.</p>
+            <p>Nessun dato personale o sanitario viene trasmesso a server di terze parti, eccetto le richieste anonimizzate all'API AI per la generazione dei contenuti.</p>
+            <p>L'utente è responsabile del backup dei propri dati tramite la funzione Esporta disponibile nelle Impostazioni.</p>
+            <p>BeHealth non è responsabile per la perdita di dati dovuta a cancellazione del browser, reset del dispositivo o altri eventi.</p>
+          </div>
+        </div>
+
+        <!-- Limitazione responsabilità -->
+        <div class="legal-section-card" onclick="toggleLegalSection(this)">
+          <div class="legal-section-header">
+            <span class="legal-section-icon">⚖️</span>
+            <span class="legal-section-title">Limitazione di responsabilità</span>
+            <span class="legal-section-chevron">▼</span>
+          </div>
+          <div class="legal-section-body">
+            <p>BeHealth è fornito "così com'è" senza garanzie di accuratezza, completezza o idoneità per uno scopo specifico.</p>
+            <p>Gli sviluppatori di BeHealth non sono responsabili per danni diretti, indiretti, incidentali o consequenziali derivanti dall'uso o dall'impossibilità di usare l'applicazione.</p>
+            <p>L'utente utilizza BeHealth a proprio rischio e responsabilità, consapevole che le informazioni fornite dall'AI possono contenere errori.</p>
+            <p>In nessun caso la responsabilità degli sviluppatori potrà superare l'importo eventualmente pagato dall'utente per l'utilizzo del servizio.</p>
+          </div>
+        </div>
+
+        <!-- Contatti -->
+        <div class="legal-section-card" onclick="toggleLegalSection(this)">
+          <div class="legal-section-header">
+            <span class="legal-section-icon">✉️</span>
+            <span class="legal-section-title">Contatti</span>
+            <span class="legal-section-chevron">▼</span>
+          </div>
+          <div class="legal-section-body">
+            <p>Per domande sui presenti Termini & Condizioni o sull'applicazione, contattare: <a href="mailto:behealth.support@gmail.com" style="color:var(--green-brand);">behealth.support@gmail.com</a></p>
+            <p>Ultimo aggiornamento: Giugno 2026</p>
+          </div>
+        </div>
+
+        <p class="legal-footer-note">
+          Utilizzando BeHealth accetti i presenti Termini & Condizioni.<br />
+          Se non accetti, interrompi l'utilizzo dell'applicazione.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PRIVACY & GDPR -->
+  <div class="legal-modal-overlay" id="legalPrivacyOverlay">
+    <div class="legal-modal">
+      <div class="legal-modal-handle"></div>
+      <div class="legal-modal-header">
+        <div>
+          <div class="legal-modal-title">Privacy & GDPR</div>
+          <div class="legal-modal-subtitle">Gestione dati e consensi · Giugno 2026</div>
+        </div>
+        <button class="legal-modal-close" onclick="closeLegal('privacy')">✕</button>
+      </div>
+      <div class="legal-modal-body">
+
+        <!-- GDPR notice -->
+        <div class="legal-gdpr-notice">
+          🛡️ BeHealth tratta i tuoi dati sanitari (categoria speciale ai sensi dell'Art. 9 GDPR) esclusivamente per fornirti il servizio. I dati sono salvati localmente sul tuo dispositivo e non vengono condivisi con terze parti senza il tuo consenso esplicito.
+        </div>
+
+        <!-- Consensi -->
+        <div class="legal-section-card" onclick="toggleLegalSection(this)">
+          <div class="legal-section-header">
+            <span class="legal-section-icon">✅</span>
+            <span class="legal-section-title">Gestione consensi</span>
+            <span class="legal-section-chevron">▼</span>
+          </div>
+          <div class="legal-section-body">
+            <p><strong style="color:var(--green-deep);">Archiviazione dati sanitari</strong> <span style="font-size:10px;background:var(--green-mist);color:var(--green-mid);padding:2px 8px;border-radius:20px;margin-left:4px;">Necessario</span><br />Necessario per salvare i tuoi valori ematici e il profilo di salute sul dispositivo. Non disattivabile.</p>
+            <p><strong style="color:var(--green-deep);">Personalizzazione AI</strong><br />Consente all'AI di utilizzare i tuoi dati sanitari per fornire raccomandazioni personalizzate.</p>
+            <p><strong style="color:var(--green-deep);">Analytics utilizzo</strong><br />Raccolta anonima di dati sull'uso dell'app per migliorare l'esperienza utente.</p>
+            <p><strong style="color:var(--green-deep);">Comunicazioni salute</strong><br />Ricezione di consigli e aggiornamenti sulla salute via notifica.</p>
+            <p style="margin-top:14px; font-size:12px; color:var(--green-mid);">ℹ️ I consensi sono gestibili direttamente dall'app: Impostazioni → Privacy.</p>
+          </div>
+        </div>
+
+        <!-- Informativa legale - con accordion interni -->
+        <div class="legal-section-card" onclick="toggleLegalSection(this)">
+          <div class="legal-section-header">
+            <span class="legal-section-icon">📋</span>
+            <span class="legal-section-title">Informativa legale</span>
+            <span class="legal-section-chevron">▼</span>
+          </div>
+          <div class="legal-section-body" onclick="event.stopPropagation()">
+            <div class="legal-accordion">
+              <div class="legal-accordion-item">
+                <button class="legal-accordion-btn" onclick="toggleAccordion(this)">
+                  Titolare del trattamento <span class="legal-accordion-chevron">▼</span>
+                </button>
+                <div class="legal-accordion-content">
+                  BeHealth è il titolare del trattamento dei dati personali raccolti tramite questa applicazione.
+                </div>
+              </div>
+              <div class="legal-accordion-item">
+                <button class="legal-accordion-btn" onclick="toggleAccordion(this)">
+                  Dati trattati (Art. 9 GDPR) <span class="legal-accordion-chevron">▼</span>
+                </button>
+                <div class="legal-accordion-content">
+                  Trattiamo dati sanitari di categoria speciale: valori ematici, stato di salute percepito, obiettivi di benessere. Base giuridica: consenso esplicito dell'interessato (Art. 9 par. 2 lett. a GDPR).
+                </div>
+              </div>
+              <div class="legal-accordion-item">
+                <button class="legal-accordion-btn" onclick="toggleAccordion(this)">
+                  Dove sono i tuoi dati <span class="legal-accordion-chevron">▼</span>
+                </button>
+                <div class="legal-accordion-content">
+                  I tuoi dati sono salvati esclusivamente sul dispositivo tramite localStorage. Le chiamate all'AI (Anthropic Claude) trasmettono dati anonimi/pseudonimi al server solo durante l'analisi e non vengono conservati.
+                </div>
+              </div>
+              <div class="legal-accordion-item">
+                <button class="legal-accordion-btn" onclick="toggleAccordion(this)">
+                  I tuoi diritti GDPR <span class="legal-accordion-chevron">▼</span>
+                </button>
+                <div class="legal-accordion-content">
+                  Hai diritto di: accesso (Art. 15), rettifica (Art. 16), cancellazione (Art. 17), limitazione (Art. 18), portabilità (Art. 20), opposizione (Art. 21). Puoi esercitarli contattando <a href="mailto:behealth.support@gmail.com" style="color:var(--green-brand);">behealth.support@gmail.com</a>
+                </div>
+              </div>
+              <div class="legal-accordion-item">
+                <button class="legal-accordion-btn" onclick="toggleAccordion(this)">
+                  Periodo di conservazione <span class="legal-accordion-chevron">▼</span>
+                </button>
+                <div class="legal-accordion-content">
+                  I dati sono conservati sul dispositivo finché non vengono eliminati manualmente dall'utente o tramite il reset dell'app. Non è prevista cancellazione automatica.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="legal-footer-note">
+          BeHealth v0.5.0-beta · Ultimo aggiornamento: Giugno 2026<br />
+          <a href="mailto:behealth.support@gmail.com">behealth.support@gmail.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
 
   <!-- MODAL REGISTRAZIONE -->
   <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -1792,9 +2304,9 @@
         <div class="success-title">Richiesta inviata!</div>
         <p class="success-desc">
           Grazie per il tuo interesse in BeHealth.<br />
-          Riceverai a breve un'email con il link e codice di accesso gratuito 
+          Riceverai a breve un'email con il link di accesso gratuito.
         </p>
-        <a href="https://behealth-beta.vercel.app/" target="_blank" class="btn-primary" style="display:inline-flex; margin: 0 auto;">
+        <a href="https://be-health-khaki.vercel.app/" target="_blank" class="btn-primary" style="display:inline-flex; margin: 0 auto;">
           Apri l'app ora →
         </a>
       </div>
@@ -1805,11 +2317,11 @@
   <footer>
     <div class="footer-logo">BeHealth</div>
     <ul class="footer-links">
-      <li><a href="#">Privacy</a></li>
-      <li><a href="#">GDPR</a></li>
+      <li><a href="#" onclick="openLegal('privacy'); return false;">Privacy & GDPR</a></li>
+      <li><a href="#" onclick="openLegal('terms'); return false;">Termini & Condizioni</a></li>
       <li><a href="mailto:behealth.support@gmail.com">Contatti</a></li>
     </ul>
-    <span>© 2026 BeHealth — Confidenziale</span>
+    <span>© 2026 BeHealth — Tutti i diritti riservati</span>
   </footer>
 
   <script>
@@ -1832,6 +2344,83 @@
       document.querySelector('nav').style.boxShadow =
         window.scrollY > 60 ? '0 2px 24px rgba(45,74,30,0.1)' : 'none';
     });
+
+    /* ─── MODAL LEGALI ─── */
+    function openLegal(type) {
+      const id = type === 'privacy' ? 'legalPrivacyOverlay' : 'legalTermsOverlay';
+      document.getElementById(id).classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLegal(type) {
+      const id = type === 'privacy' ? 'legalPrivacyOverlay' : 'legalTermsOverlay';
+      document.getElementById(id).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Chiudi cliccando overlay
+    ['legalPrivacyOverlay', 'legalTermsOverlay'].forEach(id => {
+      document.getElementById(id).addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    function toggleLegalSection(card) {
+      card.classList.toggle('open');
+    }
+
+    function toggleAccordion(btn) {
+      const item = btn.closest('.legal-accordion-item');
+      // Chiudi gli altri
+      item.closest('.legal-accordion').querySelectorAll('.legal-accordion-item').forEach(i => {
+        if (i !== item) i.classList.remove('open');
+      });
+      item.classList.toggle('open');
+    }
+
+    /* ─── FORM INVESTITORI ─── */
+    function handleInvSubmit() {
+      const name   = document.getElementById('inv-name').value.trim();
+      const email  = document.getElementById('inv-email').value.trim();
+      const role   = document.getElementById('inv-role').value;
+      const ticket = document.getElementById('inv-ticket').value;
+
+      if (!name || !email || !role) {
+        alert('Compila almeno nome, email e profilo per continuare.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Inserisci un indirizzo email valido.');
+        return;
+      }
+
+      const roleLabel   = { angel:'Business Angel', vc:'Venture Capital / Fondo', corporate:'Corporate / Strategico', clinico:'Clinico / Medico', altro:'Altro' }[role] || role;
+      const ticketLabel = { 'sotto5k':'Sotto €5.000', '5-25k':'€5.000 – €25.000', '25-100k':'€25.000 – €100.000', 'oltre100k':'Oltre €100.000', 'nd':'Non indicato' }[ticket] || '—';
+
+      const subject = encodeURIComponent('BeHealth — Manifestazione di interesse investitore');
+      const body = encodeURIComponent(
+`Nuova manifestazione di interesse — BeHealth Investitori
+==========================================================
+
+Nome:            ${name}
+Email:           ${email}
+Ruolo / Profilo: ${roleLabel}
+Ticket indicativo: ${ticketLabel}
+
+Inviato il: ${new Date().toLocaleString('it-IT')}
+`);
+
+      window.location.href = `mailto:behealth.support@gmail.com?subject=${subject}&body=${body}`;
+
+      setTimeout(() => {
+        document.getElementById('inv-form-inner').style.display = 'none';
+        const s = document.getElementById('inv-success');
+        s.style.display = 'flex';
+      }, 600);
+    }
 
     /* ─── MODAL ─── */
     const overlay  = document.getElementById('modalOverlay');
