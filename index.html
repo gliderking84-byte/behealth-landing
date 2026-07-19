@@ -1542,6 +1542,203 @@
       margin-bottom: 28px;
     }
 
+    /* ─── INVESTOR FUNDRAISING TIMELINE ─── */
+    .inv-timeline-wrap {
+      margin-bottom: 48px;
+    }
+
+    .inv-timeline-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green-brand);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .inv-timeline-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--green-pale);
+    }
+
+    /* Horizontal stepper desktop */
+    .inv-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      position: relative;
+      gap: 0;
+    }
+
+    .inv-steps::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg,
+        var(--green-brand) 0%,
+        var(--green-brand) 20%,
+        var(--green-pale) 20%,
+        var(--green-pale) 100%);
+      z-index: 0;
+    }
+
+    .inv-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .inv-step-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 14px;
+      flex-shrink: 0;
+      border: 2px solid transparent;
+      transition: transform 0.2s;
+    }
+
+    .inv-step-dot:hover { transform: scale(1.1); }
+
+    .inv-step-dot.done {
+      background: var(--green-brand);
+      box-shadow: 0 0 0 4px var(--green-mist);
+    }
+
+    .inv-step-dot.active {
+      background: var(--green-deep);
+      border-color: var(--green-brand);
+      box-shadow: 0 0 0 4px var(--green-mist), 0 0 20px rgba(99,153,34,0.3);
+      animation: glowPulse 2.5s ease-in-out infinite;
+    }
+
+    .inv-step-dot.upcoming {
+      background: white;
+      border-color: var(--green-pale);
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 0 4px var(--green-mist), 0 0 20px rgba(99,153,34,0.3); }
+      50%       { box-shadow: 0 0 0 6px var(--green-mist), 0 0 32px rgba(99,153,34,0.5); }
+    }
+
+    .inv-step-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--green-brand);
+      font-weight: 500;
+      margin-bottom: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .inv-step-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--green-deep);
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .inv-step-desc {
+      font-size: 11px;
+      color: var(--text-soft);
+      line-height: 1.4;
+    }
+
+    .inv-step-badge {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+
+    .inv-step-badge.badge-live {
+      background: var(--green-brand);
+      color: white;
+    }
+
+    .inv-step-badge.badge-soon {
+      background: var(--green-mist);
+      color: var(--green-mid);
+    }
+
+    /* Mobile: verticale */
+    .inv-steps-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      padding-left: 20px;
+      border-left: 2px solid var(--green-pale);
+    }
+
+    .inv-step-mobile {
+      padding: 0 0 24px 20px;
+      position: relative;
+    }
+
+    .inv-step-mobile:last-child { padding-bottom: 0; }
+
+    .inv-step-mobile::before {
+      content: attr(data-icon);
+      position: absolute;
+      left: -11px;
+      top: 0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 2px solid var(--green-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      line-height: 22px;
+      text-align: center;
+    }
+
+    .inv-step-mobile.active-m::before {
+      background: var(--green-brand);
+      border-color: var(--green-brand);
+    }
+
+    .inv-step-mobile-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--green-brand);
+      margin-bottom: 2px;
+    }
+
+    .inv-step-mobile-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green-deep);
+      margin-bottom: 2px;
+    }
+
+    .inv-step-mobile-desc {
+      font-size: 12px;
+      color: var(--text-soft);
+      line-height: 1.4;
+    }
+
     /* ─── INVESTITORI RESPONSIVE ─── */
     .inv-mkt-stats {
       display: grid;
@@ -1584,6 +1781,8 @@
       .inv-mkt-stats { grid-template-columns: 1fr; }
       .inv-mkt-cards { grid-template-columns: 1fr; }
       .inv-form-inputs-row { grid-template-columns: 1fr; }
+      .inv-steps { display: none; }
+      .inv-steps-mobile { display: flex; }
       footer {
         flex-direction: column;
         align-items: center;
@@ -1860,9 +2059,9 @@
       </h2>
 
       <p class="section-desc reveal" style="margin-bottom:48px;">
-        BeHealth sta aprendo un round di raccolta su piattaforma equity crowdfunding
-        regolamentata Consob. Se credi nella visione, lascia i tuoi contatti:
-        riceverai il materiale riservato prima del lancio pubblico.
+        BeHealth sta preparando un mini-round privato con Business Angel tramite strumento SAFE
+        (Simple Agreement for Future Equity). Se credi nella visione, lascia i tuoi contatti:
+        riceverai il materiale riservato prima dell'apertura del round.
       </p>
 
       <!-- Stat bar -->
@@ -1905,6 +2104,85 @@
         </div>
       </div>
 
+      <!-- Investor Fundraising Timeline -->
+      <div class="inv-timeline-wrap reveal">
+        <div class="inv-timeline-label">Dal pre-seed al lancio pubblico</div>
+
+        <!-- Desktop: stepper orizzontale -->
+        <div class="inv-steps">
+
+          <div class="inv-step">
+            <div class="inv-step-dot done">✅</div>
+            <div class="inv-step-date">GEN – GIU 2026</div>
+            <div class="inv-step-title">MVP in produzione</div>
+            <div class="inv-step-desc">App live, beta pubblica, onboarding primi utenti</div>
+            <span class="inv-step-badge badge-live">Completato</span>
+          </div>
+
+          <div class="inv-step">
+            <div class="inv-step-dot active">📊</div>
+            <div class="inv-step-date">Q3 – Q4 2026</div>
+            <div class="inv-step-title">Beta & raccolta dati</div>
+            <div class="inv-step-desc">Validazione statistica, ottimizzazione AI, crescita organica waitlist</div>
+            <span class="inv-step-badge badge-live">In corso</span>
+          </div>
+
+          <div class="inv-step">
+            <div class="inv-step-dot upcoming">🎯</div>
+            <div class="inv-step-date">Q1 2027</div>
+            <div class="inv-step-title">Mini-round SAFE</div>
+            <div class="inv-step-desc">Round privato Business Angel · strumento SAFE · target €50K–€150K</div>
+            <span class="inv-step-badge badge-soon">In preparazione</span>
+          </div>
+
+          <div class="inv-step">
+            <div class="inv-step-dot upcoming">🇮🇹</div>
+            <div class="inv-step-date">Q2 – Q3 2027</div>
+            <div class="inv-step-title">Lancio pubblico Italia</div>
+            <div class="inv-step-desc">Go-to-market B2C + onboarding prime cliniche B2B</div>
+            <span class="inv-step-badge badge-soon">In arrivo</span>
+          </div>
+
+          <div class="inv-step">
+            <div class="inv-step-dot upcoming">🌍</div>
+            <div class="inv-step-date">Q4 2027 – Q1 2028</div>
+            <div class="inv-step-title">Espansione EU</div>
+            <div class="inv-step-desc">Apertura su nuovi mercati europei · round di crescita</div>
+            <span class="inv-step-badge badge-soon">In arrivo</span>
+          </div>
+
+        </div>
+
+        <!-- Mobile: verticale -->
+        <div class="inv-steps-mobile">
+          <div class="inv-step-mobile active-m" data-icon="✅">
+            <div class="inv-step-mobile-date">Gen–Giu 2026 · Completato</div>
+            <div class="inv-step-mobile-title">MVP in produzione</div>
+            <div class="inv-step-mobile-desc">App live, beta pubblica, onboarding primi utenti</div>
+          </div>
+          <div class="inv-step-mobile active-m" data-icon="📊">
+            <div class="inv-step-mobile-date">Q3–Q4 2026 · In corso</div>
+            <div class="inv-step-mobile-title">Beta &amp; raccolta dati</div>
+            <div class="inv-step-mobile-desc">Validazione statistica, ottimizzazione AI, crescita organica waitlist</div>
+          </div>
+          <div class="inv-step-mobile" data-icon="🎯">
+            <div class="inv-step-mobile-date">Q1 2027 · In preparazione</div>
+            <div class="inv-step-mobile-title">Mini-round SAFE</div>
+            <div class="inv-step-mobile-desc">Round privato Business Angel · strumento SAFE · target €50K–€150K</div>
+          </div>
+          <div class="inv-step-mobile" data-icon="🇮🇹">
+            <div class="inv-step-mobile-date">Q2–Q3 2027</div>
+            <div class="inv-step-mobile-title">Lancio pubblico Italia</div>
+            <div class="inv-step-mobile-desc">Go-to-market B2C + onboarding prime cliniche B2B</div>
+          </div>
+          <div class="inv-step-mobile" data-icon="🌍">
+            <div class="inv-step-mobile-date">Q4 2027–Q1 2028</div>
+            <div class="inv-step-mobile-title">Espansione EU</div>
+            <div class="inv-step-mobile-desc">Apertura su nuovi mercati europei · round di crescita</div>
+          </div>
+        </div>
+      </div>
+
       <!-- Form CTA investitori -->
       <div class="reveal" style="
         background:var(--green-deep); border-radius:24px;
@@ -1916,7 +2194,7 @@
           </div>
           <div style="font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:32px;line-height:1.6;">
             Lascia i tuoi contatti. Ti inviamo il materiale riservato — Executive Summary,
-            traction beta e struttura del round — prima dell'apertura pubblica.
+            dati beta e struttura del round SAFE — prima dell'apertura agli investitori.
           </div>
 
           <div class="inv-form-inputs-row" style="margin-bottom:14px;">
@@ -1987,9 +2265,11 @@
         border-radius:12px; padding:20px 24px; margin-top:24px;
         font-size:12px; line-height:1.65; color:var(--text-soft);">
         <strong style="color:var(--text-mid);">Nota legale.</strong>
-        Questa pagina non costituisce un'offerta pubblica di strumenti finanziari ai sensi del D.Lgs. 58/1998 (TUF) né del Regolamento UE 2020/1503.
-        La raccolta equity avverrà esclusivamente tramite portale di crowdfunding autorizzato Consob.
-        Le manifestazioni di interesse espresse attraverso il form sottostante non comportano alcun obbligo di acquisto né trasferimento di denaro.
+        Questa pagina non costituisce un'offerta pubblica di strumenti finanziari.
+        Il mini-round in fase di preparazione sarà condotto in forma privata tramite strumento SAFE
+        (Simple Agreement for Future Equity), riservato a investitori qualificati/Business Angel
+        ai sensi della normativa applicabile. Le manifestazioni di interesse espresse attraverso
+        il form non comportano alcun obbligo di acquisto né trasferimento di denaro.
         Dati trattati ai sensi del GDPR Art. 6(1)(a).
       </div>
 
@@ -2042,30 +2322,39 @@
           </div>
         </div>
         <div class="roadmap-item reveal">
-          <div class="roadmap-dot upcoming">🔵</div>
+          <div class="roadmap-dot upcoming">📊</div>
           <div class="roadmap-content">
-            <div class="roadmap-phase">Fase 2 · Q3 2026</div>
-            <div class="roadmap-title">Cloud & Scale</div>
-            <div class="roadmap-desc">Supabase auth + cloud sync multi-device, push notifications server-side, prompt caching (riduzione costi AI fino al 90%), Vercel Pro con timeout esteso.</div>
-            <div class="roadmap-timing">Q3 2026</div>
+            <div class="roadmap-phase">Fase 1b · In corso</div>
+            <div class="roadmap-title">Beta & Raccolta Dati</div>
+            <div class="roadmap-desc">Onboarding utenti beta, raccolta dati statistici di utilizzo, ottimizzazione AI, feedback loop e iterazione rapida del prodotto. Fase propedeutica al mini-round SAFE.</div>
+            <div class="roadmap-timing">Q3 – Q4 2026</div>
+          </div>
+        </div>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-dot upcoming">☁️</div>
+          <div class="roadmap-content">
+            <div class="roadmap-phase">Fase 2 · Q1 2027</div>
+            <div class="roadmap-title">Cloud & AI Scale</div>
+            <div class="roadmap-desc">Cloud sync multi-device + AI multi-agentica, push notifications server-side, prompt caching (riduzione costi AI fino al 90%).</div>
+            <div class="roadmap-timing">Q4 2026 – Q1 2027</div>
           </div>
         </div>
         <div class="roadmap-item reveal">
           <div class="roadmap-dot upcoming">🏥</div>
           <div class="roadmap-content">
-            <div class="roadmap-phase">Fase 3 · Q4 2026</div>
-            <div class="roadmap-title">Marketplace Medici</div>
-            <div class="roadmap-desc">Marketplace B2B dove medici e nutrizionisti deploiano i propri agenti AI proprietari. Onboarding B2B, white-label API, validazione clinica.</div>
-            <div class="roadmap-timing">Q4 2026</div>
+            <div class="roadmap-phase">Fase 3 · Q2 – Q3 2027</div>
+            <div class="roadmap-title">Marketplace Medici & Lancio</div>
+            <div class="roadmap-desc">Marketplace B2B dove medici e nutrizionisti deploiano i propri agenti AI proprietari. Onboarding B2B, white-label API, validazione clinica. Lancio pubblico Italia.</div>
+            <div class="roadmap-timing">Q2 – Q3 2027</div>
           </div>
         </div>
         <div class="roadmap-item reveal">
           <div class="roadmap-dot upcoming">📱</div>
           <div class="roadmap-content">
-            <div class="roadmap-phase">Fase 4 · Q1 2027</div>
-            <div class="roadmap-title">App Nativa & Integrazioni</div>
-            <div class="roadmap-desc">App React Native iOS/Android, scanner barcode con Open Food Facts, integrazione API supermercati per lista spesa automatizzata, wearable sync.</div>
-            <div class="roadmap-timing">Q1 2027</div>
+            <div class="roadmap-phase">Fase 4 · Q4 2027 – Q1 2028</div>
+            <div class="roadmap-title">App Nativa & Espansione EU</div>
+            <div class="roadmap-desc">App React Native iOS/Android, scanner barcode con Open Food Facts, integrazione API per acquisti in-app e prenotazioni visite mediche, wearable sync. Apertura nuovi mercati europei.</div>
+            <div class="roadmap-timing">Q4 2027 – Q1 2028</div>
           </div>
         </div>
       </div>
