@@ -2736,9 +2736,7 @@
             from_name: 'BeHealth Landing',
             name: [nome, cognome].filter(Boolean).join(' ') || 'Non specificato',
             email: email,
-            'Sesso': sessoLabel,
-            'Data di nascita': nascitaFormatted,
-            'Inviato il': new Date().toLocaleString('it-IT')
+            message: `Nuova richiesta di accesso BeHealth\n\nNome: ${[nome, cognome].filter(Boolean).join(' ') || '—'}\nEmail: ${email}\nSesso: ${sessoLabel}\nData di nascita: ${nascitaFormatted}\nInviato il: ${new Date().toLocaleString('it-IT')}`
           })
         });
 
@@ -2785,9 +2783,7 @@
             from_name: 'BeHealth Investitori',
             name: name,
             email: email,
-            'Ruolo / Profilo': roleLabel,
-            'Ticket indicativo': ticketLabel,
-            'Inviato il': new Date().toLocaleString('it-IT')
+            message: `Manifestazione di interesse — BeHealth Investitori\n\nNome: ${name}\nEmail: ${email}\nRuolo / Profilo: ${roleLabel}\nTicket indicativo: ${ticketLabel}\nInviato il: ${new Date().toLocaleString('it-IT')}`
           })
         });
         const data = await res.json();
