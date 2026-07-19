@@ -1023,6 +1023,8 @@
       justify-content: space-between;
       align-items: center;
       font-size: 13px;
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
     .footer-logo {
@@ -1036,15 +1038,22 @@
       display: flex;
       gap: 24px;
       list-style: none;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .footer-links a {
       color: rgba(255,255,255,0.4);
       text-decoration: none;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
     .footer-links a:hover { color: var(--green-brand); }
+
+    .footer-copy {
+      white-space: nowrap;
+    }
 
     /* ─── ANIMATIONS ─── */
     @keyframes slideUp {
@@ -1575,6 +1584,15 @@
       .inv-mkt-stats { grid-template-columns: 1fr; }
       .inv-mkt-cards { grid-template-columns: 1fr; }
       .inv-form-inputs-row { grid-template-columns: 1fr; }
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 32px 24px;
+        gap: 20px;
+      }
+      .footer-links { gap: 16px; }
+      .footer-copy { font-size: 12px; }
     }
   </style>
 </head>
@@ -2342,7 +2360,7 @@
       <li><a href="#" onclick="openLegal('terms'); return false;">Termini & Condizioni</a></li>
       <li><a href="mailto:behealth.support@gmail.com">Contatti</a></li>
     </ul>
-    <span>© 2026 BeHealth — Tutti i diritti riservati</span>
+    <span class="footer-copy">© 2026 BeHealth — Tutti i diritti riservati</span>
   </footer>
 
   <script>
