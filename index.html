@@ -2824,62 +2824,6 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
     /* ─── FORM SUBMIT ─── */
-    function handleFormSubmit() {
-      const nome    = document.getElementById('fieldNome').value.trim();
-      const cognome = document.getElementById('fieldCognome').value.trim();
-      const sesso   = document.getElementById('fieldSesso').value;
-      const nascita = document.getElementById('fieldNascita').value;
-      const email   = document.getElementById('fieldEmail').value.trim();
-
-      // Validazione campi obbligatori
-      if (!sesso) {
-        alert('Per favore seleziona il sesso.');
-        return;
-      }
-      if (!nascita) {
-        alert('Per favore inserisci la data di nascita.');
-        return;
-      }
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        alert('Per favore inserisci un indirizzo email valido.');
-        return;
-      }
-
-      const btn = document.getElementById('formSubmit');
-      btn.disabled = true;
-      btn.textContent = 'Invio in corso…';
-
-      // Costruzione email body
-      const sessoLabel = { M: 'Uomo', F: 'Donna', A: 'Preferisco non dirlo' }[sesso] || sesso;
-      const nascitaFormatted = nascita
-        ? new Date(nascita).toLocaleDateString('it-IT', { day:'2-digit', month:'2-digit', year:'numeric' })
-        : '—';
-
-      const subject = encodeURIComponent('BeHealth — Nuova richiesta di accesso gratuito');
-      const body = encodeURIComponent(
-`Nuova richiesta di accesso BeHealth
-====================================
-
-Nome:            ${nome || '—'}
-Cognome:         ${cognome || '—'}
-Sesso:           ${sessoLabel}
-Data di nascita: ${nascitaFormatted}
-Email:           ${email}
-
-Inviato il: ${new Date().toLocaleString('it-IT')}
-`
-      );
-
-      const mailtoLink = `mailto:behealth.support@gmail.com?subject=${subject}&body=${body}`;
-
-      // Apri client email e mostra stato successo
-      window.location.href = mailtoLink;
-
-      setTimeout(() => {
-        document.getElementById('modalFormContent').classList.add('hide');
-        document.getElementById('modalSuccess').classList.add('show');
-      }, 600);
-    }
   </script>
 </body>
 </html>
