@@ -2705,45 +2705,103 @@
       item.classList.toggle('open');
     }
 
-    /* ─── FORM INVESTITORI ─── */
-    function handleInvSubmit() {
+    /* ─── FORM REGISTRAZIONE — Web3Forms ─── */
+    async function handleFormSubmit() {
+      const nome    = document.getElementById('fieldNome').value.trim();
+      const cognome = document.getElementById('fieldCognome').value.trim();
+      const sesso   = document.getElementById('fieldSesso').value;
+      const nascita = document.getElementById('fieldNascita').value;
+      const email   = document.getElementById('fieldEmail').value.trim();
+
+      if (!sesso) { alert('Per favore seleziona il sesso.'); return; }
+      if (!nascita) { alert('Per favore inserisci la data di nascita.'); return; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Per favore inserisci un indirizzo email valido.'); return;
+      }
+
+      const btn = document.getElementById('formSubmit');
+      btn.disabled = true;
+      btn.textContent = 'Invio in corso…';
+
+      const sessoLabel = { M:'Uomo', F:'Donna', A:'Preferisco non dirlo' }[sesso] || sesso;
+      const nascitaFormatted = new Date(nascita).toLocaleDateString('it-IT', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            access_key: 'f77f55e5-6ed4-4ebe-9f71-6da2ede6ef6',
+            subject: 'BeHealth — Nuova richiesta di accesso gratuito',
+            from_name: 'BeHealth Landing',
+            name: [nome, cognome].filter(Boolean).join(' ') || 'Non specificato',
+            email: email,
+            'Sesso': sessoLabel,
+            'Data di nascita': nascitaFormatted,
+            'Inviato il': new Date().toLocaleString('it-IT')
+          })
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('modalFormContent').classList.add('hide');
+          document.getElementById('modalSuccess').classList.add('show');
+        } else {
+          throw new Error(data.message || 'Errore invio');
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = '✦ Richiedi accesso gratuito';
+        alert('Invio non riuscito. Riprova o scrivici a behealth.support@gmail.com');
+      }
+    }
+    async function handleInvSubmit() {
       const name   = document.getElementById('inv-name').value.trim();
       const email  = document.getElementById('inv-email').value.trim();
       const role   = document.getElementById('inv-role').value;
       const ticket = document.getElementById('inv-ticket').value;
 
       if (!name || !email || !role) {
-        alert('Compila almeno nome, email e profilo per continuare.');
-        return;
+        alert('Compila almeno nome, email e profilo per continuare.'); return;
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        alert('Inserisci un indirizzo email valido.');
-        return;
+        alert('Inserisci un indirizzo email valido.'); return;
       }
+
+      const invBtn = document.querySelector('#inv-form-inner .btn-primary');
+      invBtn.disabled = true;
+      invBtn.textContent = 'Invio in corso…';
 
       const roleLabel   = { angel:'Business Angel', vc:'Venture Capital / Fondo', corporate:'Corporate / Strategico', clinico:'Clinico / Medico', altro:'Altro' }[role] || role;
       const ticketLabel = { 'sotto5k':'Sotto €5.000', '5-25k':'€5.000 – €25.000', '25-100k':'€25.000 – €100.000', 'oltre100k':'Oltre €100.000', 'nd':'Non indicato' }[ticket] || '—';
 
-      const subject = encodeURIComponent('BeHealth — Manifestazione di interesse investitore');
-      const body = encodeURIComponent(
-`Nuova manifestazione di interesse — BeHealth Investitori
-==========================================================
-
-Nome:            ${name}
-Email:           ${email}
-Ruolo / Profilo: ${roleLabel}
-Ticket indicativo: ${ticketLabel}
-
-Inviato il: ${new Date().toLocaleString('it-IT')}
-`);
-
-      window.location.href = `mailto:behealth.support@gmail.com?subject=${subject}&body=${body}`;
-
-      setTimeout(() => {
-        document.getElementById('inv-form-inner').style.display = 'none';
-        const s = document.getElementById('inv-success');
-        s.style.display = 'flex';
-      }, 600);
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            access_key: 'f77f55e5-6ed4-4ebe-9f71-6da2ede6ef6',
+            subject: 'BeHealth — Manifestazione di interesse investitore',
+            from_name: 'BeHealth Investitori',
+            name: name,
+            email: email,
+            'Ruolo / Profilo': roleLabel,
+            'Ticket indicativo': ticketLabel,
+            'Inviato il': new Date().toLocaleString('it-IT')
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('inv-form-inner').style.display = 'none';
+          document.getElementById('inv-success').style.display = 'flex';
+        } else {
+          throw new Error(data.message || 'Errore invio');
+        }
+      } catch (err) {
+        invBtn.disabled = false;
+        invBtn.textContent = '✦ Ricevi il materiale riservato';
+        alert('Invio non riuscito. Riprova o scrivici a behealth.support@gmail.com');
+      }
     }
 
     /* ─── MODAL ─── */
